@@ -196,9 +196,11 @@ exec --no-startup-id xfce4-panel --disable-wm-check
 for_window [class="^.*"] border pixel 2
 bindsym $mod+Shift+Escape exec /home/benny/script/menu.py
 for_window [title="Spegnimento"] floating enable
+
 # Lock screen
 bindsym $mod+Shift+F1 exec --no-startup-id /home/benny/script/blurlock
-#bindsym $mod+Shift+F1 exec i3lock -i ~/Immagini/jowens_kauai_2.png
+
+# keybindings for applications
 bindsym F3 exec thunar
 bindsym F5 exec spotify
 bindsym F6 exec firefox
@@ -213,8 +215,13 @@ exec_always --no-startup-id numlockx on
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id ff-theme-util
 exec --no-startup-id compton -f
+
+# screensaver
 # exec --no-startup-id xautolock -time 15 -locker /home/benny/script/blurlock
 exec --no-startup-id ~/.conky/conky-startup.sh
+
+# abilitation for dialog windows from DE
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 #Pulse Audio controls
 bindsym F11 exec --no-startup-id pactl set-sink-volume 0 +5% #increase suond volume
