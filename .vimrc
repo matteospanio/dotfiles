@@ -48,8 +48,8 @@ set cursorline
 " set cursorcolumn
 
 " tema e colore sfondo
-colorscheme space-vim-dark
-" hi Normal guibg=NONE ctermbg=NONE
+colorscheme monokain
+hi Normal guibg=NONE ctermbg=NONE
 
 " fzf enable
 set rtp+=~/.fzf
@@ -67,6 +67,7 @@ set number relativenumber
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
+let g:airline_theme='dark' "badwolf
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -141,6 +142,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'joshdick/onedark.vim'
+Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
 
