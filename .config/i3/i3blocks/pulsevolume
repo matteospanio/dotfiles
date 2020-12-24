@@ -1,0 +1,27 @@
+#!/bin/sh
+
+state=$(pamixer --get-volume-human | awk -F% '{print $1}')
+
+case $BLOCK_BUTTON in
+    1) pamixer -t;;
+    3) pavucontrol;;
+    4) pamixer --allow-boost -i 5;;
+    5) pamixer --allow-boost -d 5;;
+esac
+
+if [ $state -gt "70" ]; then
+    icon="🔊"
+elif [ $state -lt "30" ]; then
+    icon="🔈"
+else
+    icon="🔉"
+fi
+
+
+mute=$(pamixer --get-mute)
+
+if [ "$mute" = "true" ]; then
+    echo "🔇"
+else
+    echo "$icon" "`pamixer --get-volume-human`"
+fi

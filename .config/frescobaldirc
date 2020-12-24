@@ -1,0 +1,9 @@
+[FileDialogSize]
+HDMI-2 Height 1080=731
+HDMI-2 Width 1920=1450
+HDMI-2 Window-Maximized 1080x1920=true
+
+[KFileDialog Settings]
+Recent Files[$e]=base16-3024.xml,file:$HOME/Musica/Suor_Angelica/parts/clarinet.ly,file:$HOME/Musica/Suor_Angelica/parts/viola.ly,file:$HOME/Musica/Suor_Angelica/score.ly,file:$HOME/Musica/Suor_Angelica/parts/cello.ly,file:$HOME/Musica/Suor_Angelica/parts/violin2.ly,file:$HOME/Musica/Suor_Angelica/parts/piano.ly,file:$HOME/Musica/Suor_Angelica/parts/violin1.ly,file:///run/media/benny/ELEMENTS/Elem_importato/disco_esterno/musique/Mozart_zauberflote.xml,file:///run/media/benny/ELEMENTS/Elem_importato/disco_esterno/musique/miserlou.ly,file:$HOME/Documenti/MuseScore3/Spartiti/PAGLIACCI.ly,file:$HOME/Documenti/MuseScore3/Spartiti/PAGLIACCI.mxl,file:$HOME/Scaricati/frescobaldi-themes/themes/base16-onedark.xml,file:$HOME/Scaricati/frescobaldi-themes/themes/base16-macintosh.xml,file:$HOME/Scaricati/frescobaldi-themes/themes/base16-google-dark.xml,file:$HOME/Scaricati/frescobaldi-themes/themes/base16-default-dark.xml
+Recent URLs[$e]=file:$HOME/Musica/Suor_Angelica/,file:$HOME/Scaricati/frescobaldi-themes/themes/,file:$HOME/Scaricati/frescobaldi-themes/,file:$HOME/Scaricati/,file:$HOME/,file:$HOME/Documenti/MuseScore3/Spartiti/,file:///run/media/benny/ELEMENTS/Elem_importato/disco_esterno/musique/,file:///run/media/benny/ELEMENTS/Elem_importato/disco_esterno/,file:$HOME/Musica/Suor_Angelica/parts/
+iconViewIconSize=43
