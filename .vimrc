@@ -48,7 +48,7 @@ set mouse=a
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Automatically wrap text that extends beyond the screen length.
-set nowrap
+set wrap
 
 " Uncomment below to set the max textwidth. Use a value corresponding to the
 " width of your screen.
@@ -95,6 +95,10 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 set laststatus=2
 " Set status line display
 " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}%{kite#statusline()}
+
+" open from template directory ~/Modelli/
+"autocmd BufNewFile * silent! 0r $HOME/Modelli/%:e.tpl
+autocmd BufNewFile  *.c	0r ~/.vim/templates/template.c
 
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
@@ -282,6 +286,8 @@ endif
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc-exclude-standard']
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
+
+
 
 " tutti i keybindings personalizzati vanno qua "spazio"+...
 let mapleader = " "
