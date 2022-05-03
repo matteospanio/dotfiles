@@ -7,7 +7,8 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'rust-lang/rust.vim'
 Plug 'mbbill/undotree'
 Plug 'vim-utils/vim-man'
 Plug 'jremmen/vim-ripgrep'
@@ -15,7 +16,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'leafgarland/typescript-vim'
 Plug 'lyuts/vim-rtags'
 Plug 'kien/ctrlp.vim'
-" Plug 'ycm-core/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
@@ -28,7 +28,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-
+" telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -160,11 +163,6 @@ set incsearch
 set ignorecase
 set smartcase
 
-" kite preferences
-" let g:kite_supported_languages = ['*']
-" let g:kite_tab_complete=1
-" autocmd CompleteDone * if !pumvisible() | pclose | endif
-
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 "function! IsNERDTreeOpen()
@@ -292,9 +290,11 @@ let g:netrw_banner = 0
 " tutti i keybindings personalizzati vanno qua "spazio"+...
 let mapleader = " "
 
+nnoremap <leader>p :Telescope find_files<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>t :NERDTreeToggleVCS<CR>
 nnoremap <leader>l :bn<CR>
 nnoremap <leader>h :bp<CR>
 nnoremap <leader>w :bd<CR>
 " nnoremap <leader>a :wincmd v <bar> :Ex <bar> :vertical resize 30<CR>
+
