@@ -9,6 +9,12 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:/home/matteo/.local/bin"
+export PATH="$PATH:/usr/local/go/bin"
+
+export PATH="$PATH:/usr/lib/cuda/bin"
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/cuda/lib64"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/matteo/.oh-my-zsh"
@@ -85,6 +91,8 @@ plugins=(
     dotenv
     zsh-syntax-highlighting
     zsh-autosuggestions
+    colored-man-pages
+    python
     )
 
 source $ZSH/oh-my-zsh.sh
@@ -92,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -116,6 +125,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias nvim="~/Applications/nvim.appimage"
 alias vim="~/Applications/nvim.appimage"
+alias open="xdg-open"
 
 # COLORLS
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -125,10 +135,10 @@ alias ll="colorls -Alh --sd"
 
 # FLUTTER
 # add flutter to path
-export PATH="$PATH:`pwd`/flutter/bin"
+export PATH="$PATH:$HOME/flutter/bin"
 
 # variables for flutter doctor
-export CHROME_EXECUTABLE="/home/matteo/.local/share/flatpak/app/org.chromium.Chromium/x86_64/stable/20cf3cc0fec0e0f689add75157140977f7118aa60a841c92a87481e7366c6ccb/export/bin/org.chromium.Chromium"
+export CHROME_EXECUTABLE="$HOME/.local/share/flatpak/app/org.chromium.Chromium/current/active/export/bin/org.chromium.Chromium"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 export PATH="$PATH:$ANDROID_HOME:$JAVA_HOME"
@@ -154,3 +164,5 @@ unset __conda_setup
 
 # opam configuration
 test -r /home/matteo/.opam/opam-init/init.zsh && . /home/matteo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+[ -f "/home/matteo/.ghcup/env" ] && source "/home/matteo/.ghcup/env" # ghcup-env
