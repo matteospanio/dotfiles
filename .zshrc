@@ -123,8 +123,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias nvim="~/Applications/nvim.appimage"
-alias vim="~/Applications/nvim.appimage"
+
+alias vim="nvim"
 alias open="xdg-open"
 
 # COLORLS
