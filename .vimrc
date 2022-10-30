@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'tweekmonster/gofmt.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'mbbill/undotree'
 Plug 'vim-utils/vim-man'
@@ -102,6 +103,10 @@ set laststatus=2
 " open from template directory ~/Modelli/
 "autocmd BufNewFile * silent! 0r $HOME/Modelli/%:e.tpl
 autocmd BufNewFile  *.c	0r ~/.vim/templates/template.c
+
+" Gofmt plugin
+let g:gofmt_exe = 'gofmt'
+let g:gofmt_on_save = 1
 
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
@@ -204,9 +209,9 @@ set signcolumn=yes
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+      \ pumvisible() ? "\<C-n>" : "\<TAB>"
+      "\ <SID>check_back_space() ? "\<TAB>" :
+      "\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
