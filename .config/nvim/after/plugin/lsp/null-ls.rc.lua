@@ -1,43 +1,52 @@
-local status, null_ls = pcall(require, "null-ls")
+local status, nls = pcall(require, "null-ls")
 if (not status) then return end
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local fmt_group = vim.api.nvim_create_augroup('FORMATTING', { clear = true })
 
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format({
-    filter = function(client)
-      return client.name == "null-ls"
-    end,
-    bufnr = bufnr,
-  })
-end
+local fmt = nls.builtins.formatting
+local dgn = nls.builtins.diagnostics
+local cda = nls.builtins.code_actions
 
-null_ls.setup {
-  sources = {
-    null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
-    }),
-    null_ls.builtins.diagnostics.fish
-  },
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          lsp_formatting(bufnr)
-        end,
-      })
+nls.setup {
+    sources = {
+        -- formatting
+        fmt.trim_whitespace.with({
+            filetypes = { 'text', 'zsh', 'toml', 'make', 'conf', 'tmux' },
+        }),
+        fmt.prettierd,
+        fmt.eslint_d,
+        fmt.rustfmt,
+        fmt.stylua,
+        fmt.gofmt,
+        fmt.zigfmt,
+        fmt.shfmt.with({
+            extra_args = { '-i', 4, '-ci', 'sr' },
+        }),
+
+        -- diagnostics
+        dgn.eslint_d,
+        dgn.shellcheck,
+        dgn.luacheck.with({
+            extra_args = { '--globals', 'vim', '--std', 'luajit' },
+        }),
+
+        -- code actions
+        cda.eslint_d,
+        cda.shellcheck,
+    },
+    on_attach = function(client, buf)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = fmt_group,
+                buffer = buf,
+                callback = function()
+                    vim.lsp.buf.format({
+                        timeout_ms = 3000,
+                        buffer = buf,
+                    })
+                end,
+            })
+        end
     end
-  end
 }
 
-vim.api.nvim_create_user_command(
-  'DisableLspFormatting',
-  function()
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
-  end,
-  { nargs = 0 }
-)
