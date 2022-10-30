@@ -22,12 +22,12 @@ function save_backup() {
 for conf in $ZSH $BASH $TMUX; do
     save_backup $conf
     echo "linking $conf in $HOME"
-    ln -s $(pwd)/$conf $HOME/$conf
+    ln -s "$(pwd)/$conf" "$HOME/$conf"
 done
 
 CON='.config'
 for file in $(ls $CON); do
     echo "linking $file in $HOME/$CON"
-    ln -s $(pwd)/$CON/$file $HOME/$CON/$file
+    ln -s "$(pwd)/$CON/$file" "$HOME/$CON/$file"
 done
 
