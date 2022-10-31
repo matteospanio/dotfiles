@@ -12,6 +12,7 @@ return require('packer').startup(function()
 
     -- colorscheme
     use 'gruvbox-community/gruvbox'
+    use 'folke/tokyonight.nvim'
 
     -- utilities
     use 'nvim-lua/plenary.nvim'
