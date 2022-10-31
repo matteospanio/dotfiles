@@ -2,9 +2,7 @@
 # bash script by matteospanio <matteo.spanio97@gmail.com>
 # link your dotfiles
 
-ZSH='.zshrc'
-BASH='.bashrc'
-TMUX='.tmux.conf'
+HOME_CONF=( '.zshrc' '.bashrc' '.tmux.conf'  '.mpd' )
 
 pwd | grep 'dotfiles$'
 if [ $? -ne 0 ]; then
@@ -19,10 +17,10 @@ function save_backup() {
     fi 
 }
 
-for conf in $ZSH $BASH $TMUX; do
-    save_backup $conf
-    echo "linking $conf in $HOME"
-    ln -s "$(pwd)/$conf" "$HOME/$conf"
+for file in "${HOME_CONF[@]}"; do 
+    save_backup "$file"
+    echo "linking $file in $HOME"
+    ln -s "$(pwd)/$file" "$HOME/$file"
 done
 
 CON='.config'
