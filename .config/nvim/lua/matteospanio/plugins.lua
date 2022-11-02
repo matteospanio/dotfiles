@@ -62,6 +62,10 @@ return require('packer').startup(function()
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
     use 'akinsho/nvim-bufferline.lua'
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
 
     if packer_bootstrap then
         require('packer').sync()
