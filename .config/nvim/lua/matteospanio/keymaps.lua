@@ -15,3 +15,6 @@ map.set('n', '<leader>h', ':bp<CR>')
 
 -- Close current buffer
 map.set('n', '<leader>w', ':bd<CR>')
+
+-- Markdown
+map.set('n', '<leader>m', ':MarkdownPreviewToggle<CR>')
