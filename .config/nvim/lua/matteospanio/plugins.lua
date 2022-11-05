@@ -1,10 +1,32 @@
 local fn = vim.fn
+
+-- Install packer if it is not installed
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-        install_path })
+    PACKER_BOOTSTRAP = fn.system({
+        'git',
+        'clone',
+        '--depth',
+        '1',
+        'https://github.com/wbthomason/packer.nvim',
+        install_path
+    })
+    print "Installing packer close and reopen Neovim..."
     vim.cmd [[packadd packer.nvim]]
 end
+
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
+
+packer.init {
+    display = {
+        open_fn = function()
+            return require("packer.util").float { border = "rounded" }
+        end,
+    },
+}
 
 return require('packer').startup(function()
     -- packer manages itself
@@ -35,17 +57,24 @@ return require('packer').startup(function()
         },
     }
 
-    -- LSP settings
-    use("onsails/lspkind-nvim")
+    -- cmp plugins
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/nvim-cmp")
+    use("hrsh7th/nvim-cmp") -- the completion plugin
+    use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-cmdline")
+    use("saadparwaiz1/cmp_luasnip")
+
+    -- LSP settings
+    use("onsails/lspkind-nvim")
     use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp_extensions.nvim")
     use("glepnir/lspsaga.nvim")
     use("simrat39/symbols-outline.nvim")
-    use("L3MON4D3/LuaSnip")
-    use("saadparwaiz1/cmp_luasnip")
+
+    -- snippets
+    use("L3MON4D3/LuaSnip") -- snippet engine
+    use("rafamadriz/friendly-snippets")
 
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'williamboman/mason.nvim'
@@ -62,12 +91,14 @@ return require('packer').startup(function()
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
     use 'akinsho/nvim-bufferline.lua'
+
+    -- markdown-preview
     use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     })
 
-    if packer_bootstrap then
+    if PACKER_BOOTSTRAP then
         require('packer').sync()
     end
 end)
