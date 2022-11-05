@@ -1,5 +1,7 @@
 local status, nvim_lsp = pcall(require, "lspconfig")
-if (not status) then return end
+if (not status) then
+    return
+end
 
 local protocol = require('vim.lsp.protocol')
 
@@ -71,23 +73,23 @@ local lsp_flags = {
     -- This is the default in Nvim 0.7+
     debounce_text_changes = 150,
 }
-require("lspconfig").jedi_language_server.setup {
+nvim_lsp.pylsp.setup {
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig').tsserver.setup {
+nvim_lsp.tsserver.setup {
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig').clangd.setup {
+nvim_lsp.clangd.setup {
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig').html.setup {
+nvim_lsp.html.setup {
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig').rust_analyzer.setup {
+nvim_lsp.rust_analyzer.setup {
     on_attach = on_attach,
     flags = lsp_flags,
     -- Server-specific settings...
@@ -95,7 +97,6 @@ require('lspconfig').rust_analyzer.setup {
         ["rust-analyzer"] = {}
     }
 }
-
 nvim_lsp.sourcekit.setup {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -127,12 +128,10 @@ nvim_lsp.tailwindcss.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
-
 nvim_lsp.cssls.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
-
 nvim_lsp.astro.setup {
     on_attach = on_attach,
     capabilities = capabilities
@@ -144,8 +143,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
     virtual_text = { spacing = 4, prefix = "●" },
     severity_sort = true,
-}
-)
+})
 
 -- Diagnostic symbols in the sign column (gutter)
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
