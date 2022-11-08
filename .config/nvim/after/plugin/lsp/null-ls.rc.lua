@@ -1,5 +1,7 @@
 local status, nls = pcall(require, "null-ls")
-if (not status) then return end
+if (not status) then
+    return
+end
 
 local fmt_group = vim.api.nvim_create_augroup('FORMATTING', { clear = true })
 
@@ -49,4 +51,3 @@ nls.setup {
         end
     end
 }
-
