@@ -159,3 +159,5 @@ ex ()
   fi
 }
 
+
+. "$HOME/.cargo/env"

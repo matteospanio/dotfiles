@@ -11,10 +11,12 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/go/bin"
-
+export PATH="$PATH:$HOME/Applications/PhpStorm/bin/phpstorm"
+export PATH="$PATH:$HOME/Applications/PyCharm/bin/pycharm"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:/usr/lib/cuda/bin"
 
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/cuda/lib64"
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/cuda/lib64"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -87,14 +89,19 @@ export ZSH="$HOME/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 
 plugins=(
+    copyfile
     git
+    gitignore
     dotenv
     zsh-syntax-highlighting
     zsh-autosuggestions
+    tldr
+    rust
+    symfony
     colored-man-pages
     python
     poetry
-    )
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,6 +119,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR=nvim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -127,6 +135,9 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
 alias open="xdg-open"
+alias phpstorm="phpstorm.sh"
+alias ccat="~/.local/share/cat/cat.py"
+alias chromium="flatpak run org.chromium.Chromium"
 
 # COLORLS
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -165,3 +176,10 @@ unset __conda_setup
 
 [ -f "/home/matteo/.ghcup/env" ] && source "/home/matteo/.ghcup/env" # ghcup-env
 eval "$(starship init zsh)"
+
+# BEGIN SNIPPET: Platform.sh CLI configuration
+HOME=${HOME:-'/home/matteo'}
+export PATH="$HOME/"'.platformsh/bin':"$PATH"
+if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
+
+. "$HOME/.cargo/env"
