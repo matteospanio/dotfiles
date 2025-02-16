@@ -49,31 +49,36 @@ return require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-    -- Tree file browser
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-    }
-
     -- cmp plugins
-    use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/nvim-cmp") -- the completion plugin
+    use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-cmdline")
-    use("saadparwaiz1/cmp_luasnip")
+    use("hrsh7th/nvim-cmp") -- the completion plugin
 
     -- LSP settings
     use("onsails/lspkind-nvim")
     use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp_extensions.nvim")
-    use("glepnir/lspsaga.nvim")
+    use({
+        "nvimdev/lspsaga.nvim",
+        after = "nvim-lspconfig",
+        config = function()
+            require('lspsaga').setup({})
+        end,
+    })
     use("simrat39/symbols-outline.nvim")
 
     -- snippets
-    use("L3MON4D3/LuaSnip") -- snippet engine
+    use("hrsh7th/cmp-vsnip")
+    use("hrsh7th/vim-vsnip")
+    -- use({
+    --     "L3MON4D3/LuaSnip",
+    --     -- follow latest release.
+    --     tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    --     -- install jsregexp (optional!:).
+    --     run = "make install_jsregexp"
+    -- })
     use("rafamadriz/friendly-snippets")
 
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua

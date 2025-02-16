@@ -3,12 +3,12 @@ if (not status) then
     return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-    return
-end
+-- local snip_status_ok, luasnip = pcall(require, "luasnip")
+-- if not snip_status_ok then
+--     return
+-- end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+-- require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
     local col = vim.fn.col "." - 1
@@ -20,7 +20,10 @@ local lspkind = require 'lspkind'
 cmp.setup({
     snippet = {
         expand = function(args)
-            luasnip.lsp_expand(args.body)
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- luasnip.lsp_expand(args.body) -- For `luasnip` users.
+            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
         end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -35,10 +38,10 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.expandable() then
-                luasnip.expand()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
+                --     elseif luasnip.expandable() then
+                --         luasnip.expand()
+                --     elseif luasnip.expand_or_jumpable() then
+                --         luasnip.expand_or_jump()
             elseif check_backspace() then
                 fallback()
             else
@@ -50,13 +53,16 @@ cmp.setup({
         }),
     }),
     sources = cmp.config.sources({
-        { name = 'luasnip' },
+        { name = 'vsnip' },
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
     }),
     formatting = {
-        format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
+        format = lspkind.cmp_format({
+            with_text = false,
+            maxwidth = 50,
+        })
     }
 })
 
